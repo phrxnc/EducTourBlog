@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Tour Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    >
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="h-screen overflow-hidden bg-slate-100 text-gray-900">
+    <button id="sidebar-toggle" type="button" class="fixed right-3 top-3 z-50 rounded-full border border-emerald-200 bg-white/92 px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-lg shadow-emerald-950/10 backdrop-blur-md transition hover:bg-emerald-50 lg:hidden">
+        Open Chapters
+    </button>
+
+    <main class="fixed inset-0 z-20">
+        <div class="h-full w-full">
+            <div class="relative h-full overflow-hidden bg-white/45">
+                <section class="absolute inset-0 min-w-0 overflow-hidden">
+                    <div id="tour-map" class="absolute inset-0 z-0"></div>
+                    <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-emerald-50/35 via-transparent to-emerald-50/25"></div>
+                </section>
+
+                <aside id="sidebar-shell" class="pointer-events-auto fixed left-3 top-3 z-40 flex w-[90vw] max-w-sm max-h-[calc(100vh-var(--controls-clearance)-0.75rem)] -translate-x-[110%] flex-col overflow-y-auto overscroll-contain rounded-2xl border border-emerald-100/80 bg-white/88 p-4 shadow-2xl shadow-emerald-950/20 backdrop-blur-xl transition-transform duration-300 ease-out sm:left-4 sm:top-4 sm:max-h-[calc(100vh-var(--controls-clearance)-1rem)] lg:left-4 lg:translate-x-0 lg:p-5 lg:max-h-[calc(100vh-var(--controls-clearance)-1rem)]">
+                    <div class="mb-3 flex items-center justify-between lg:hidden">
+                        <h2 class="text-lg font-semibold text-gray-900">BSIT Educational Tour</h2>
+                        <button id="sidebar-close" type="button" class="rounded-full border border-emerald-200 bg-white px-2.5 py-1 text-xs font-semibold text-emerald-700">Close</button>
+                    </div>
+
+                    <div class="mb-3 hidden lg:block">
+                        <h2 class="text-lg font-semibold text-gray-900">BSIT Educational Tour</h2>
+                        <p class="mt-1 text-xs text-gray-600">Immersive chapter replay with synchronized map and itinerary narrative.</p>
+                    </div>
+
+                    <p class="mb-3 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Tour Chapters</p>
+
+                    <div class="mb-4 rounded-xl border border-emerald-100 bg-emerald-50/55 p-3">
+                        <p class="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Day Filter</p>
+                        <div class="flex flex-wrap gap-2" id="day-filter-controls">
+                            <button type="button" class="day-filter-btn rounded-full border border-emerald-300 bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500" data-day="all">All Days</button>
+                        </div>
+                    </div>
+
+                    <div id="locations-panel" class="pr-1"></div>
+
+                    <div id="global-empty-state" class="mt-3 hidden rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">No locations available for this filter.</div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <div id="map-image-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-slate-950/85 p-4">
+        <button id="map-image-modal-prev" type="button" class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/30 bg-white/10 px-3 py-2 text-lg font-bold text-white backdrop-blur hover:bg-white/20" aria-label="Previous image">&#8592;</button>
+        <button id="map-image-modal-next" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/30 bg-white/10 px-3 py-2 text-lg font-bold text-white backdrop-blur hover:bg-white/20" aria-label="Next image">&#8594;</button>
+        <button id="map-image-modal-close" type="button" class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur hover:bg-white/20" aria-label="Close image viewer">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M6 6l12 12"></path>
+                <path d="M18 6l-12 12"></path>
+            </svg>
+        </button>
+        <div class="w-full max-w-5xl">
+            <img id="map-image-modal-img" src="" alt="Location gallery image" class="max-h-[78vh] w-full rounded-xl object-contain shadow-2xl">
+            <p id="map-image-modal-caption" class="mt-3 text-center text-sm text-white/90"></p>
+            <p id="map-image-modal-counter" class="mt-1 text-center text-xs font-semibold tracking-wide text-white/75"></p>
+            <div id="map-image-modal-thumbnails" class="mt-3 flex max-w-full gap-2 overflow-x-auto pb-1"></div>
+        </div>
+    </div>
+
+    <div id="scene-focus-modal" class="fixed inset-0 z-[65] hidden items-end justify-center bg-slate-950/55 p-2 sm:items-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="scene-focus-title" data-mode="presenter">
+        <div id="scene-focus-panel" class="w-full max-w-5xl overflow-hidden rounded-2xl border border-emerald-200/40 bg-white/95 shadow-2xl shadow-slate-900/35 backdrop-blur">
+            <div class="flex items-center justify-between border-b border-slate-200 px-3 py-2.5 sm:px-4">
+                <div>
+                    <p id="scene-focus-meta" class="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Day - Itinerary -</p>
+                    <h3 id="scene-focus-title" class="mt-1 text-base font-semibold text-slate-900 sm:text-lg">Itinerary Focus</h3>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="scene-focus-finish" type="button" class="rounded-full border border-emerald-200 bg-emerald-600 px-3 py-1 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-500" aria-label="Finish itinerary focus">Finish</button>
+                    <button id="scene-focus-close" type="button" class="flex h-7 w-7 items-center justify-center rounded-full border border-slate-300 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-100" aria-label="Close itinerary focus">X</button>
+                </div>
+            </div>
+
+            <div id="scene-focus-panel-body" class="grid gap-2.5 p-3 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] sm:gap-3 sm:p-4 sm:items-start">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl bg-slate-900">
+                        <img id="scene-focus-hero-img" src="" alt="Itinerary image" class="max-h-[36vh] w-full object-contain sm:max-h-[44vh]">
+                        <div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-slate-900/80 to-transparent px-3 pb-2 pt-6 text-xs text-white/90">
+                            <span id="scene-focus-image-counter">1/1</span>
+                            <div class="flex items-center gap-1">
+                                <button id="scene-focus-prev-img" type="button" class="pointer-events-auto rounded-md border border-white/40 bg-white/10 px-2 py-1 font-semibold text-white hover:bg-white/20" aria-label="Previous itinerary image">&larr;</button>
+                                <button id="scene-focus-next-img" type="button" class="pointer-events-auto rounded-md border border-white/40 bg-white/10 px-2 py-1 font-semibold text-white hover:bg-white/20" aria-label="Next itinerary image">&rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="scene-focus-thumbnails" class="mt-2.5 flex gap-2 overflow-x-auto pb-1"></div>
+                </div>
+
+                <div id="scene-focus-copy-rail" class="flex flex-col gap-2.5 self-start">
+                    <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
+                    <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="scene-focus-live" class="sr-only" aria-live="polite"></div>
+
+    <div id="sidebar-backdrop" class="fixed inset-0 z-30 hidden bg-gray-900/35 lg:hidden"></div>
+
+    <section class="pointer-events-none fixed inset-x-0 bottom-3 z-40 px-3 sm:px-4 lg:bottom-4 lg:px-4">
+        <div class="mx-auto flex max-w-3xl flex-col items-center gap-2">
+            <div class="pointer-events-auto flex w-full max-w-2xl flex-wrap items-center justify-center gap-2 rounded-2xl border border-emerald-200/85 bg-white/92 px-3 py-2 shadow-lg shadow-emerald-950/15 backdrop-blur-lg sm:px-4">
+                <button id="prev-location-btn" type="button" class="playback-control-btn rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm ring-1 ring-emerald-200 transition hover:bg-emerald-50">Previous</button>
+                <button id="next-location-btn" type="button" class="playback-control-btn rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-gray-800 shadow-sm ring-1 ring-emerald-200 transition hover:bg-emerald-50">Next</button>
+                <button id="play-tour-btn" type="button" class="playback-control-btn rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-500">Start Tour</button>
+                <button id="pause-tour-btn" type="button" class="playback-control-btn rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-emerald-200 transition hover:bg-emerald-50">Pause</button>
+                <button id="skip-travel-btn" type="button" class="playback-control-btn rounded-full bg-amber-500 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-amber-400">Skip Travel</button>
+                <button id="stop-tour-btn" type="button" class="playback-control-btn rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-emerald-200 transition hover:bg-emerald-50">End Tour</button>
+                <!-- Speed control removed -->
+                <!-- Reopen Itinerary button removed -->
+                <div class="w-full text-center text-[10px] font-medium tracking-wide text-emerald-800/90">
+                    <span id="prev-target-label">Prev: -</span>
+                    <span class="mx-2 text-emerald-700/50">|</span>
+                    <span id="next-target-label">Next: -</span>
+                </div>
+            </div>
+
+            <div class="pointer-events-none w-full max-w-2xl rounded-2xl border border-emerald-200/80 bg-white/88 p-4 shadow-lg shadow-emerald-950/10 backdrop-blur-lg">
+                <p id="chapter-status" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-700">Standby</p>
+                <p id="now-viewing" class="mt-1 text-base font-semibold text-gray-900 sm:text-lg">Now Viewing: Waiting to start</p>
+            </div>
+        </div>
+    </section>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+    <script src="js/tour-playback-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+{
+  "days": [
+    {
+      "number": 1,
+      "title": "Manila Heritage Trail",
+      "locations": [
+        {
+          "id": 11,
+          "title": "Rizal Park",
+          "description": "Rizal Park is a historic urban park in Manila dedicated to Dr. Jose Rizal and major moments in Philippine history. It serves as a civic space where heritage, national identity, and public life intersect.",
+          "reflection": "",
+          "latitude": 14.5826446,
+          "longitude": 120.9786887,
+          "order": 0,
+          "image_urls": [
+            "media/tour/locations/day-1/rizal-park/gallery/8d9e26900d374d48814483c2fd1b1b5e.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/9377a71d5d3940cd8bbc1323493f1e95.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/615f66ae99e4413795da684946f448ae.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/bd964a342075430ea7a38acdd93d4a3d.jpg",
+            "media/tour/locations/day-1/rizal-park/gallery/41491fa88155401f81d8ab66ea6cb8f8.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/ba44922f81b94ecf8746e4b9e79d8c98.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/2032080f049345d5a4f977cb42dda26e.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/526aec9fc79946b19a6abf31c52fc00d.webp",
+            "media/tour/locations/day-1/rizal-park/gallery/230a91f7f21b4d128516370077567fac.webp"
+          ]
+        },
+        {
+          "id": 12,
+          "title": "The Manila Cathedral",
+          "description": "The Manila Cathedral is a significant religious and architectural landmark in Intramuros known for its historic role in Filipino spiritual life. Its design and restoration tell a story of resilience across generations.",
+          "reflection": "",
+          "latitude": 14.5917422,
+          "longitude": 120.9733921,
+          "order": 1,
+          "image_urls": [
+            "media/tour/locations/day-1/the-manila-cathedral/gallery/73f75a7d22fa45d7a81807cf52fbd8b9.webp",
+            "media/tour/locations/day-1/the-manila-cathedral/gallery/064e40dfcfb24ef1afc3937c913e0b61.webp",
+            "media/tour/locations/day-1/the-manila-cathedral/gallery/4cf32447f1864ac28170cd66649d7b63.webp"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Fort Santiago",
+          "description": "Fort Santiago within Intramuros is a preserved Spanish-era citadel that highlights colonial history and national struggle. It offers a tangible view of how historical spaces shape cultural memory.",
+          "reflection": "",
+          "latitude": 14.5895972,
+          "longitude": 120.9747258,
+          "order": 2,
+          "image_urls": [
+            "media/tour/locations/day-1/fort-santiago/gallery/IMG_20260405_150929.webp",
+            "media/tour/locations/day-1/fort-santiago/gallery/IMG_20260405_151022.webp",
+            "media/tour/locations/day-1/fort-santiago/gallery/IMG_20260405_151437.webp",
+            "media/tour/locations/day-1/fort-santiago/gallery/IMG_20260405_152042.webp",
+            "media/tour/locations/day-1/fort-santiago/gallery/IMG_20260405_153024.webp"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "SM Mall of Asia",
+          "description": "SM Mall of Asia is a large commercial complex that combines retail, leisure, and events into a modern urban destination. It reflects contemporary consumer behavior and large-scale business operations.",
+          "reflection": "",
+          "latitude": 14.5358397,
+          "longitude": 120.980416,
+          "order": 3,
+          "image_urls": [
+            "media/tour/locations/day-1/sm-mall-of-asia/gallery/IMG_20260405_160902.webp",
+            "media/tour/locations/day-1/sm-mall-of-asia/gallery/IMG_20260405_161031.webp",
+            "media/tour/locations/day-1/sm-mall-of-asia/gallery/IMG_20260405_161201.webp",
+            "media/tour/locations/day-1/sm-mall-of-asia/gallery/IMG_20260405_172511.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Tech and Business Visit",
+      "locations": [
+        {
+          "id": 13,
+          "title": "Hytec Power Incorporated",
+          "description": "Hytec Power Incorporated is a technology-focused company where students can observe practical industry workflows and operational systems. It provides insight into how technical teams support business performance.",
+          "reflection": "",
+          "latitude": 14.7328452,
+          "longitude": 121.0477978,
+          "order": 0,
+          "image_urls": [
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/clipboard-image-1777865839.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/clipboard-image-1777865886.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_085538.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_090439.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_092718.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_092723.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_092727.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_092756.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_093328.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102155.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102251.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102604.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102631.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102652.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102720.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102733.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102910.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_102923.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_103112.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_103216.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_103220.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_103331.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_103457.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_104034.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_105709.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_105809.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_105849.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110035.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110054.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110140.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110330.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110345.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110909.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_110920.webp",
+            "media/tour/locations/day-2/hytec-power-incorporated/gallery/IMG_20260406_111139.webp"
+          ]
+        },
+        {
+          "id": 14,
+          "title": "OpenText Philippines",
+          "description": "OpenText Philippines is part of a global enterprise technology environment focused on information management and digital solutions. The visit highlights how large organizations build scalable systems for clients.",
+          "reflection": "",
+          "latitude": 14.5609101,
+          "longitude": 121.0160347,
+          "order": 1,
+          "image_urls": [
+            "media/tour/locations/day-2/opentext-philippines/gallery/20260406_144504%20%281%29.webp",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268625824.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268627275.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268630165.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268632071.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268633509.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268637004.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268638459.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/1776268640126.jfif",
+            "media/tour/locations/day-2/opentext-philippines/gallery/IMG_20260406_133900.webp",
+            "media/tour/locations/day-2/opentext-philippines/gallery/IMG_20260406_164237.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Creative and BPO Visit",
+      "locations": [
+        {
+          "id": 15,
+          "title": "Top Peg Animation & Creative Studio, Inc.",
+          "description": "Top Peg Animation & Creative Studio demonstrates how digital creativity, storytelling, and technical production come together in media work. It showcases the role of design and animation in communication industries.",
+          "reflection": "",
+          "latitude": 14.4560388,
+          "longitude": 120.9779311,
+          "order": 0,
+          "image_urls": [
+            "media/tour/locations/day-3/top-peg-animation-creative-studio-inc/gallery/20260408_101448.webp",
+            "media/tour/locations/day-3/top-peg-animation-creative-studio-inc/gallery/IMG_20260407_102818.webp",
+            "media/tour/locations/day-3/top-peg-animation-creative-studio-inc/gallery/IMG_20260407_111609.webp"
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Teleperformance",
+          "description": "Teleperformance is a major BPO organization that operates customer experience services supported by technology and workflow systems. It demonstrates high-volume operations, service quality standards, and workforce coordination.",
+          "reflection": "",
+          "latitude": 14.5359998,
+          "longitude": 121.0433827,
+          "order": 1,
+          "image_urls": [
+            "media/tour/locations/day-3/teleperformance/gallery/Teleperformance.webp",
+            "media/tour/locations/day-3/teleperformance/gallery/20260407_133514.webp",
+            "media/tour/locations/day-3/teleperformance/gallery/20260407_133523.webp",
+            "media/tour/locations/day-3/teleperformance/gallery/IMG_20260407_170342.webp",
+            "media/tour/locations/day-3/teleperformance/gallery/Teleperformance%202.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Public Service and Corporate Visit",
+      "locations": [
+        {
+          "id": 17,
+          "title": "Metropolitan Manila Development Authority (MMDA) Head Office",
+          "description": "The MMDA Head Office provides a view of public-sector operations that support traffic management, urban services, and metropolitan governance. It highlights how data and coordination can improve city systems.",
+          "reflection": "",
+          "latitude": 14.583868,
+          "longitude": 121.0673424,
+          "order": 0,
+          "image_urls": [
+            "media/tour/locations/day-4/mmda-head-office/gallery/20260407_103103.webp",
+            "media/tour/locations/day-4/mmda-head-office/gallery/IMG_20260408_084634.webp",
+            "media/tour/locations/day-4/mmda-head-office/gallery/029654678baa82a1b610803bc2a74b9b.webp",
+            "media/tour/locations/day-4/mmda-head-office/gallery/20260407_092948.webp",
+            "media/tour/locations/day-4/mmda-head-office/gallery/IMG_20260408_085531.webp"
+          ]
+        },
+        {
+          "id": 18,
+          "title": "MicroSourcing",
+          "description": "MicroSourcing is a corporate outsourcing environment where distributed teams deliver business and technical support across industries. It illustrates modern workplace models and scalable service delivery.",
+          "reflection": "",
+          "latitude": 14.6102911,
+          "longitude": 121.0788677,
+          "order": 1,
+          "image_urls": [
+            "media/tour/locations/day-4/microsourcing/gallery/20260408_132228.webp",
+            "media/tour/locations/day-4/microsourcing/gallery/20260408_135039.webp",
+            "media/tour/locations/day-4/microsourcing/gallery/20260408_175256.webp",
+            "media/tour/locations/day-4/microsourcing/gallery/IMG_20260408_131610.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Tagaytay Excursion",
+      "locations": [
+        {
+          "id": 19,
+          "title": "People's Park in the Sky",
+          "description": "People’s Park in the Sky is a scenic destination offering panoramic views of Tagaytay and nearby provinces. The stop focuses on leisure, local tourism, and appreciating natural landscapes.",
+          "reflection": "",
+          "latitude": 14.1416667,
+          "longitude": 121.0219444,
+          "order": 0,
+          "image_urls": [
+            "media/tour/locations/day-5/peoples-park-in-the-sky/gallery/IMG_20260409_075746.webp",
+            "media/tour/locations/day-5/peoples-park-in-the-sky/gallery/IMG_20260409_081016.webp",
+            "media/tour/locations/day-5/peoples-park-in-the-sky/gallery/20260409_081244.webp",
+            "media/tour/locations/day-5/peoples-park-in-the-sky/gallery/20260409_082011.webp"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "Sky Ranch Tagaytay",
+          "description": "Sky Ranch Tagaytay is a recreational park known for rides, family-friendly attractions, and scenic views. It highlights how tourism and entertainment contribute to local economic activity.",
+          "reflection": "",
+          "latitude": 14.0952777,
+          "longitude": 120.9377498,
+          "order": 1,
+          "image_urls": [
+            "media/tour/locations/day-5/sky-ranch-tagaytay/gallery/IMG_20260409_101250.webp",
+            "media/tour/locations/day-5/sky-ranch-tagaytay/gallery/20260409_101756.webp",
+            "media/tour/locations/day-5/sky-ranch-tagaytay/gallery/IMG_20260409_102329.webp",
+            "media/tour/locations/day-5/sky-ranch-tagaytay/gallery/IMG_20260409_102809.webp",
+            "media/tour/locations/day-5/sky-ranch-tagaytay/gallery/IMG_4099.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Baguio and La Trinidad Tour",
+      "locations": [
+        {
+          "id": 5,
+          "title": "La Trinidad's Strawberry Farm",
+          "description": "La Trinidad’s Strawberry Farm is a popular agri-tourism site where visitors experience local farming culture and produce. The stop is recreational with cultural and community relevance.",
+          "reflection": "",
+          "latitude": 16.4575176,
+          "longitude": 120.5861849,
+          "order": 0,
+          "image_urls": [
+            "media/tour/locations/day-6/la-trinidads-strawberry-farm/gallery/20260410_064913%280%29.webp",
+            "media/tour/locations/day-6/la-trinidads-strawberry-farm/gallery/IMG_20260410_062915.webp",
+            "media/tour/locations/day-6/la-trinidads-strawberry-farm/gallery/IMG_20260410_063209.webp"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Bell Church",
+          "description": "Bell Church is a cultural and spiritual attraction in Baguio known for its architecture and peaceful atmosphere. The stop centers on heritage appreciation and quiet reflection.",
+          "reflection": "",
+          "latitude": 16.431633,
+          "longitude": 120.5988794,
+          "order": 1,
+          "image_urls": [
+            "media/tour/locations/day-6/bell-church/gallery/20260410_071656.webp",
+            "media/tour/locations/day-6/bell-church/gallery/IMG_20260410_073253.webp",
+            "media/tour/locations/day-6/bell-church/gallery/IMG_20260410_073614.webp",
+            "media/tour/locations/day-6/bell-church/gallery/IMG_20260410_073959.webp",
+            "media/tour/locations/day-6/bell-church/gallery/IMG_20260410_074106.webp"
+          ]
+        },
+        {
+          "id": 7,
+          "title": "Philippine Military Academy (PMA)",
+          "description": "The Philippine Military Academy is a formal institution for leadership and service training.",
+          "reflection": "",
+          "latitude": 16.360888,
+          "longitude": 120.619414,
+          "order": 2,
+          "image_urls": [
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133148.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133433.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133902.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133912.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133932.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133937.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_133944.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_134003.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_134048.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_134208.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_134449.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_135347.webp",
+            "media/tour/locations/day-6/philippine-military-academy/gallery/IMG_20260410_141526.webp"
+          ]
+        },
+        {
+          "id": 8,
+          "title": "The Mansion",
+          "description": "The Mansion is a historic government landmark in Baguio often visited for sightseeing and historical interest. The stop is primarily recreational and heritage-oriented.",
+          "reflection": "",
+          "latitude": 16.4125078,
+          "longitude": 120.6214302,
+          "order": 3,
+          "image_urls": [
+            "media/tour/locations/day-6/the-mansion/gallery/20260410_145816%280%29.webp",
+            "media/tour/locations/day-6/the-mansion/gallery/IMG_20260410_145641.webp",
+            "media/tour/locations/day-6/the-mansion/gallery/IMG_20260410_145927.webp",
+            "media/tour/locations/day-6/the-mansion/gallery/IMG_20260410_145936.webp"
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Mines View Park",
+          "description": "Mines View Park is a scenic lookout and local shopping area known for mountain views and souvenir stalls. The stop is recreational and focused on tourism and local culture.",
+          "reflection": "",
+          "latitude": 16.4195651,
+          "longitude": 120.6278588,
+          "order": 4,
+          "image_urls": [
+            "media/tour/locations/day-6/mines-view-park/gallery/20260410_152709.webp",
+            "media/tour/locations/day-6/mines-view-park/gallery/IMG_20260410_151800.webp",
+            "media/tour/locations/day-6/mines-view-park/gallery/IMG_20260410_152513.webp"
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Burnham Park",
+          "description": "Burnham Park is a central leisure space in Baguio for relaxation, boating, biking, and social activities. The stop serves as a recreational close to the tour day.",
+          "reflection": "",
+          "latitude": 16.4123795,
+          "longitude": 120.5929704,
+          "order": 5,
+          "image_urls": [
+            "media/tour/locations/day-6/burnham-park/gallery/IMG_20260410_204842.webp",
+            "media/tour/locations/day-6/burnham-park/gallery/IMG_20260411_095013.webp",
+            "media/tour/locations/day-6/burnham-park/gallery/IMG_20260411_095127.webp"
+          ]
+        }
+      ]
+    }
+  ]
+}
