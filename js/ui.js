@@ -86,7 +86,7 @@ export const createUI = () => {
                         <div class="location-card cursor-pointer rounded-xl border border-transparent bg-white p-3 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/60 hover:shadow-md" data-location-id="${escapeHtml(location.id)}" data-day="${escapeHtml(day.number)}" data-order="${escapeHtml(location.order)}" data-title="${escapeHtml(location.title)}" data-lat="${escapeHtml(location.latitude)}" data-lng="${escapeHtml(location.longitude)}">
                             <div class="flex items-start justify-between gap-2">
                                 <h4 class="min-w-0 flex-1 pr-2 text-sm font-semibold leading-snug text-gray-900">${escapeHtml(location.title)}</h4>
-                                <span class="mt-0.5 shrink-0 self-start whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">Itinerary ${idx + 1}</span>
+                                <span class="mt-0.5 shrink-0 self-start whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">Activity ${idx + 1}</span>
                             </div>
                             <p class="mt-1 text-xs leading-relaxed text-gray-600">${escapeHtml(location.description || "")}</p>
                             ${location.reflection ? `<p class=\"mt-1.5 text-xs italic leading-relaxed text-gray-500\">${escapeHtml(location.reflection)}</p>` : ""}
@@ -303,7 +303,7 @@ export const createUI = () => {
             sceneTitle.textContent = location.title || "Itinerary Focus";
         }
         if (sceneMeta) {
-            sceneMeta.textContent = `Day ${dayNumber} - Itinerary ${index}/${total}`;
+            sceneMeta.textContent = `Day ${dayNumber} - Activity ${index}/${total}`;
         }
         if (sceneDescription) {
             sceneDescription.textContent = location.description || "";

@@ -237,7 +237,6 @@ export const createMapController = (config, callbacks = {}) => {
             <div data-location-id="${escapeHtml(location.id)}" style="font-family: ui-sans-serif, system-ui; font-size: 12px; line-height: 1.4; color: #0f172a;">
                 <strong style="font-size: 13px;">${escapeHtml(location.title)}</strong>
                 <p style="margin-top: 6px; color: #475569;">${escapeHtml(location.description)}</p>
-                ${location.reflection ? `<p style="margin-top:8px;color:#475569;font-style:italic;">${escapeHtml(location.reflection)}</p>` : ""}
                 <button type="button" class="tour-popup-learn-more" data-location-id="${escapeHtml(location.id)}">Learn more</button>
                 ${gallery}
             </div>

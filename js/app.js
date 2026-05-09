@@ -62,7 +62,7 @@
             return;
         }
         const fragment = document.createDocumentFragment();
-        for (let i = 1; i <= 7; i += 1) {
+        for (let i = 1; i <= 6; i += 1) {
             const button = document.createElement("button");
             button.type = "button";
             button.className = "day-filter-btn rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-semibold text-emerald-800 transition hover:border-emerald-300 hover:bg-emerald-50";
@@ -92,7 +92,7 @@
                         <div class="location-card cursor-pointer rounded-xl border border-transparent bg-white p-3 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50/60 hover:shadow-md" data-location-id="${location.id}" data-day="${day.number}" data-order="${location.order}" data-title="${location.title}" data-id="${location.id}" data-lat="${location.latitude}" data-lng="${location.longitude}">
                             <div class="flex items-start justify-between gap-2">
                                 <h4 class="min-w-0 flex-1 pr-2 text-sm font-semibold leading-snug text-gray-900">${location.title}</h4>
-                                <span class="mt-0.5 shrink-0 self-start whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">Itinerary ${location.order + 1}</span>
+                                <span class="mt-0.5 shrink-0 self-start whitespace-nowrap rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">Activity ${location.order + 1}</span>
                             </div>
                             <p class="mt-1 text-xs leading-relaxed text-gray-600">${truncate(location.description)}</p>
                             ${location.reflection ? `<p class=\"mt-1.5 text-xs italic leading-relaxed text-gray-500\">${truncate(location.reflection)}</p>` : ""}

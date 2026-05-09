@@ -391,10 +391,6 @@
         }
 
         createPopupContent(location) {
-            const reflection = location.reflection
-                ? `<p style="margin-top:8px;color:#475569;font-style:italic;">${MapController.escapeHtml(location.reflection)}</p>`
-                : "";
-
             const images = Array.isArray(location.imageUrls) ? location.imageUrls : [];
             const gallery = images.length
                 ? `
@@ -421,7 +417,6 @@
                 <div style="min-width:220px;">
                     <h3 style="margin:0 0 6px;font-size:15px;font-weight:700;color:#0f172a;">${MapController.escapeHtml(location.title)}</h3>
                     <p style="margin:0;color:#334155;font-size:13px;line-height:1.4;">${MapController.escapeHtml(location.description)}</p>
-                    ${reflection}
                     ${gallery}
                     ${learnMoreButton}
                 </div>
@@ -734,6 +729,7 @@
             this.prevButton = document.getElementById("prev-location-btn");
             this.nextButton = document.getElementById("next-location-btn");
             this.skipTravelButton = document.getElementById("skip-travel-btn");
+            this.galleryButton = document.getElementById("gallery-btn");
             this.prevTargetLabel = document.getElementById("prev-target-label");
             this.nextTargetLabel = document.getElementById("next-target-label");
             this.speedControl = document.getElementById("speed-control");
@@ -777,6 +773,12 @@
             this.playButton.classList.toggle("hover:bg-emerald-500", !state.isPlaying);
             this.pauseButton.disabled = !state.isPlaying;
             this.stopButton.disabled = !state.isPlaying;
+            if (this.galleryButton) {
+                const canOpenGallery = !!state.canOpenGallery && !state.isPlaying;
+                this.galleryButton.disabled = !canOpenGallery;
+                this.galleryButton.classList.toggle("opacity-60", !canOpenGallery);
+                this.galleryButton.classList.toggle("cursor-not-allowed", !canOpenGallery);
+            }
             if (this.skipTravelButton) {
                 const canSkipTravel = !!state.canSkipTravel;
                 this.skipTravelButton.disabled = !canSkipTravel;
@@ -918,6 +920,9 @@
             this.playButton.addEventListener("click", handlers.onPlay);
             this.pauseButton.addEventListener("click", handlers.onPause);
             this.stopButton.addEventListener("click", handlers.onStop);
+            if (this.galleryButton && typeof handlers.onGallery === "function") {
+                this.galleryButton.addEventListener("click", handlers.onGallery);
+            }
             if (this.skipTravelButton && typeof handlers.onSkipTravel === "function") {
                 this.skipTravelButton.addEventListener("click", handlers.onSkipTravel);
             }
@@ -1112,7 +1117,7 @@
             }
 
             this.title.textContent = location.title || "Untitled location";
-            this.meta.textContent = `Day ${dayNumber} - Itinerary ${sceneIndex}/${sceneTotal}`;
+            this.meta.textContent = `Day ${dayNumber} - Activity ${sceneIndex}/${sceneTotal}`;
             this.description.textContent = location.description || "No description provided.";
             this.reflection.textContent = location.reflection || "No reflection provided.";
             this.reflection.classList.toggle("hidden", !location.reflection);
@@ -1134,7 +1139,7 @@
             if (!this.liveRegion || !this.activeLocation) {
                 return;
             }
-            this.liveRegion.textContent = `Now focusing Day ${this.activeDayNumber}, Itinerary ${this.activeSceneIndex} of ${this.activeSceneTotal}: ${this.activeLocation.title}`;
+            this.liveRegion.textContent = `Now focusing Day ${this.activeDayNumber}, Activity ${this.activeSceneIndex} of ${this.activeSceneTotal}: ${this.activeLocation.title}`;
         }
 
         runRevealSequence() {
@@ -1160,17 +1165,24 @@
                 .map((src, idx) => {
                     const activeClass = idx === this.imageIndex ? "is-active" : "";
                     return `
-                        <button type="button" data-scene-thumb-index="${idx}" class="scene-focus-thumb ${activeClass} inline-flex h-14 w-20 flex-none overflow-hidden rounded-lg bg-white" aria-label="Show image ${idx + 1}">
-                            <img src="${MapController.escapeHtml(src)}" alt="${MapController.escapeHtml(this.activeLocation?.title || "Itinerary image")} ${idx + 1}" class="h-full w-full object-cover">
+                        <button type="button" data-scene-thumb-index="${idx}" class="scene-focus-thumb ${activeClass} inline-flex h-14 w-full overflow-hidden rounded-lg bg-white" aria-label="Show image ${idx + 1}">
+                            <img src="${MapController.escapeHtml(src)}" alt="${MapController.escapeHtml(this.activeLocation?.title || "Itinerary image")} ${idx + 1}" loading="lazy" decoding="async" class="h-full w-full object-cover">
                         </button>
                     `;
                 })
                 .join("");
 
-            const hasOverflow = this.thumbnails.scrollWidth > this.thumbnails.clientWidth + 2;
-            this.thumbnails.classList.toggle("thumbs-centered", !hasOverflow);
+            const isVertical = this.thumbnails.classList.contains("scene-focus-thumbnails-vertical");
+            const hasOverflow = isVertical
+                ? this.thumbnails.scrollHeight > this.thumbnails.clientHeight + 2
+                : this.thumbnails.scrollWidth > this.thumbnails.clientWidth + 2;
+            this.thumbnails.classList.toggle("thumbs-centered", !hasOverflow && !isVertical);
             if (hasOverflow) {
-                this.thumbnails.scrollLeft = 0;
+                if (isVertical) {
+                    this.thumbnails.scrollTop = 0;
+                } else {
+                    this.thumbnails.scrollLeft = 0;
+                }
             }
         }
 
@@ -1281,6 +1293,10 @@
             this.startImageAutoplay();
         }
 
+        hasGallery() {
+            return !!(this.activeLocation && this.images.length);
+        }
+
         startImageAutoplay() {
             this.stopImageAutoplay();
             if (this.images.length <= 1) {
@@ -1309,12 +1325,14 @@
     }
 
     class PlaybackController {
-        constructor(state, mapController, uiController, sceneFocusController, config) {
+        constructor(state, mapController, uiController, sceneFocusController, config, openGalleryModal) {
             this.state = state;
             this.map = mapController;
             this.ui = uiController;
             this.sceneFocus = sceneFocusController;
             this.config = config;
+            this.openGalleryModal = typeof openGalleryModal === "function" ? openGalleryModal : null;
+            this.allGalleryItems = this.buildGlobalGallery();
             this.activeManualDay = "all";
             this.hasManualFocus = false;
             this.currentManualLocationId = null;
@@ -1324,6 +1342,29 @@
 
         tokenValidator(token) {
             return () => this.state.isTokenValid(token);
+        }
+
+        buildGlobalGallery() {
+            const items = [];
+            for (const day of this.state.days) {
+                for (const location of day.locations) {
+                    const images = Array.isArray(location.imageUrls) ? location.imageUrls : [];
+                    images.forEach((src, index) => {
+                        items.push({
+                            src,
+                            alt: `${location.title || "Location"} image ${index + 1}`,
+                        });
+                    });
+                }
+            }
+            return items;
+        }
+
+        openGlobalGallery() {
+            if (!this.openGalleryModal || !this.allGalleryItems.length || this.state.isPlaying) {
+                return;
+            }
+            this.openGalleryModal(this.allGalleryItems, 0);
         }
 
         async wait(baseMs, token, options = {}) {
@@ -1377,6 +1418,7 @@
                 isPlaying: this.state.isPlaying,
                 isPaused: this.state.isPaused,
                 canSkipTravel: this.canSkipTravel,
+                canOpenGallery: !this.state.isPlaying && this.allGalleryItems.length > 0,
             });
         }
 
@@ -1437,6 +1479,7 @@
             const total = day ? day.locations.length : 1;
             const idx = day ? Math.max(0, day.locations.findIndex((loc) => loc.id === entry.location.id)) : 0;
             this.sceneFocus.updateScene(entry.dayNumber, entry.location, idx + 1, total, openSceneFocus);
+            this.updateTourControls(this.canSkipTravel);
             this.syncBrowseTargets();
         }
 
@@ -1686,6 +1729,7 @@
             this.ui.activateLocation(location.id);
             this.ui.setNowViewing(`Now Viewing: ${location.title}`);
             this.sceneFocus.updateScene(day.number, location, this.state.currentLocationIndex + 1, day.locations.length);
+            this.updateTourControls(this.canSkipTravel);
             this.syncBrowseTargets();
 
             this.skipSceneHold = false;
@@ -1743,6 +1787,7 @@
             this.ui.setNowViewing(`Now Viewing: Day ${day.number} - ${location.title}`);
             const sceneIndex = Math.max(0, day.locations.findIndex((loc) => loc.id === location.id)) + 1;
             this.sceneFocus.updateScene(day.number, location, sceneIndex, day.locations.length, false);
+            this.updateTourControls(this.canSkipTravel);
         }
 
         openSceneFocusFromPopup(locationId) {
@@ -1759,6 +1804,7 @@
             const total = day ? day.locations.length : 1;
             const idx = day ? Math.max(0, day.locations.findIndex((loc) => loc.id === entry.location.id)) : 0;
             this.sceneFocus.updateScene(entry.dayNumber, entry.location, idx + 1, total, true);
+            this.updateTourControls(this.canSkipTravel);
         }
 
         skipTravel() {
@@ -1797,10 +1843,17 @@
             let activeIndex = 0;
 
             const syncThumbnailAlignment = () => {
-                const hasOverflow = thumbnails.scrollWidth > thumbnails.clientWidth + 2;
-                thumbnails.classList.toggle("thumbs-centered", !hasOverflow);
+                const isVertical = thumbnails.classList.contains("modal-gallery-vertical");
+                const hasOverflow = isVertical
+                    ? thumbnails.scrollHeight > thumbnails.clientHeight + 2
+                    : thumbnails.scrollWidth > thumbnails.clientWidth + 2;
+                thumbnails.classList.toggle("thumbs-centered", !hasOverflow && !isVertical);
                 if (hasOverflow) {
-                    thumbnails.scrollLeft = 0;
+                    if (isVertical) {
+                        thumbnails.scrollTop = 0;
+                    } else {
+                        thumbnails.scrollLeft = 0;
+                    }
                 }
             };
 
@@ -1826,8 +1879,8 @@
                 thumbnails.innerHTML = activeGallery
                     .map(
                         (item, index) => `
-                            <button type="button" data-thumb-index="${index}" class="modal-gallery-thumb inline-flex h-14 w-20 flex-none overflow-hidden rounded-lg bg-white/10">
-                                <img src="${MapController.escapeHtml(item.src || "")}" alt="${MapController.escapeHtml(item.alt || "Location gallery image")}" class="h-full w-full object-cover" />
+                            <button type="button" data-thumb-index="${index}" class="modal-gallery-thumb inline-flex h-14 w-full overflow-hidden rounded-lg bg-white/10">
+                                <img src="${MapController.escapeHtml(item.src || "")}" alt="${MapController.escapeHtml(item.alt || "Location gallery image")}" loading="lazy" decoding="async" class="h-full w-full object-cover" />
                             </button>
                         `
                     )
@@ -1938,15 +1991,17 @@
                     syncThumbnailAlignment();
                 }
             });
+
+            return openModal;
         };
 
-        setupImageModal();
+        const openGalleryModal = setupImageModal();
 
         const stateManager = new TourStateManager(daysData);
         const mapController = new MapController("tour-map", merged);
         const uiController = new UIController();
         const sceneFocusController = new SceneFocusController(uiController);
-        const playbackController = new PlaybackController(stateManager, mapController, uiController, sceneFocusController, merged);
+        const playbackController = new PlaybackController(stateManager, mapController, uiController, sceneFocusController, merged, openGalleryModal);
 
         mapController.build(stateManager.days, (day, location) => playbackController.handleMarkerClick(day, location));
 
@@ -1954,6 +2009,7 @@
             onPlay: () => playbackController.playTour(),
             onPause: () => playbackController.pauseTour(),
             onStop: () => playbackController.stopTour(),
+            onGallery: () => playbackController.openGlobalGallery(),
             onSkipTravel: () => playbackController.skipTravel(),
             onPrev: () => playbackController.browseStep(-1),
             onNext: () => playbackController.browseStep(1),
@@ -1998,7 +2054,7 @@
             }
         });
 
-        uiController.setControls({ isPlaying: false, isPaused: false, canSkipTravel: false });
+        uiController.setControls({ isPlaying: false, isPaused: false, canSkipTravel: false, canOpenGallery: playbackController.allGalleryItems.length > 0 });
         uiController.setPlaybackMode(PLAYBACK_MODE.STANDBY);
         uiController.setNowViewing("Now Viewing: Waiting To Start");
         playbackController.applyManualFilter("all");

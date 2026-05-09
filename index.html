@@ -37,7 +37,7 @@
                         <p class="mt-1 text-xs text-gray-600">Immersive chapter replay with synchronized map and itinerary narrative.</p>
                     </div>
 
-                    <p class="mb-3 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Tour Chapters</p>
+                    <p class="mb-3 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Tour Itinerary</p>
 
                     <div class="mb-4 rounded-xl border border-emerald-100 bg-emerald-50/55 p-3">
                         <p class="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Day Filter</p>
@@ -63,11 +63,16 @@
                 <path d="M18 6l-12 12"></path>
             </svg>
         </button>
-        <div class="w-full max-w-5xl">
-            <img id="map-image-modal-img" src="" alt="Location gallery image" class="max-h-[78vh] w-full rounded-xl object-contain shadow-2xl">
-            <p id="map-image-modal-caption" class="mt-3 text-center text-sm text-white/90"></p>
-            <p id="map-image-modal-counter" class="mt-1 text-center text-xs font-semibold tracking-wide text-white/75"></p>
-            <div id="map-image-modal-thumbnails" class="mt-3 flex max-w-full gap-2 overflow-x-auto pb-1"></div>
+        <div class="w-full max-w-5xl sm:grid sm:grid-cols-[minmax(0,1fr)_minmax(0,260px)] sm:gap-4">
+            <div>
+                <img id="map-image-modal-img" src="" alt="Location gallery image" loading="eager" decoding="async" class="max-h-[78vh] w-full rounded-xl object-contain shadow-2xl">
+                <p id="map-image-modal-caption" class="mt-3 text-center text-sm text-white/90"></p>
+                <p id="map-image-modal-counter" class="mt-1 text-center text-xs font-semibold tracking-wide text-white/75"></p>
+            </div>
+            <div class="mt-4 sm:mt-0">
+                <p class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/70">Gallery</p>
+                <div id="map-image-modal-thumbnails" class="modal-gallery-vertical grid max-h-[72vh] grid-cols-4 gap-2 overflow-y-auto pr-1"></div>
+            </div>
         </div>
     </div>
 
@@ -84,10 +89,10 @@
                 </div>
             </div>
 
-            <div id="scene-focus-panel-body" class="grid gap-2.5 p-3 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] sm:gap-3 sm:p-4 sm:items-start">
+            <div id="scene-focus-panel-body" class="grid gap-2.5 p-3 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] sm:gap-3 sm:p-4 sm:items-start">
                 <div>
                     <div class="relative overflow-hidden rounded-xl bg-slate-900">
-                        <img id="scene-focus-hero-img" src="" alt="Itinerary image" class="max-h-[36vh] w-full object-contain sm:max-h-[44vh]">
+                        <img id="scene-focus-hero-img" src="" alt="Itinerary image" loading="eager" decoding="async" class="max-h-[36vh] w-full object-contain sm:max-h-[44vh]">
                         <div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-slate-900/80 to-transparent px-3 pb-2 pt-6 text-xs text-white/90">
                             <span id="scene-focus-image-counter">1/1</span>
                             <div class="flex items-center gap-1">
@@ -96,12 +101,15 @@
                             </div>
                         </div>
                     </div>
-                    <div id="scene-focus-thumbnails" class="mt-2.5 flex gap-2 overflow-x-auto pb-1"></div>
+                    <div id="scene-focus-copy-rail" class="mt-2.5 flex flex-col gap-2.5 self-start">
+                        <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
+                        <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
+                    </div>
                 </div>
 
-                <div id="scene-focus-copy-rail" class="flex flex-col gap-2.5 self-start">
-                    <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
-                    <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
+                <div class="flex flex-col">
+                    <p class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Gallery</p>
+                    <div id="scene-focus-thumbnails" class="scene-focus-thumbnails-vertical grid max-h-[52vh] grid-cols-4 gap-2 overflow-y-auto pr-1"></div>
                 </div>
             </div>
         </div>
@@ -119,6 +127,7 @@
                 <button id="play-tour-btn" type="button" class="playback-control-btn rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-500">Start Tour</button>
                 <button id="pause-tour-btn" type="button" class="playback-control-btn rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-emerald-200 transition hover:bg-emerald-50">Pause</button>
                 <button id="skip-travel-btn" type="button" class="playback-control-btn rounded-full bg-amber-500 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-amber-400">Skip Travel</button>
+                <button id="gallery-btn" type="button" class="playback-control-btn rounded-full bg-sky-600 px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-sky-500">Gallery</button>
                 <button id="stop-tour-btn" type="button" class="playback-control-btn rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-emerald-200 transition hover:bg-emerald-50">End Tour</button>
                 <!-- Speed control removed -->
                 <!-- Reopen Itinerary button removed -->
