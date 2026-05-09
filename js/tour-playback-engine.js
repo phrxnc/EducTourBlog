@@ -1165,7 +1165,7 @@
                 .map((src, idx) => {
                     const activeClass = idx === this.imageIndex ? "is-active" : "";
                     return `
-                        <button type="button" data-scene-thumb-index="${idx}" class="scene-focus-thumb ${activeClass} inline-flex h-14 w-full overflow-hidden rounded-lg bg-white" aria-label="Show image ${idx + 1}">
+                        <button type="button" data-scene-thumb-index="${idx}" class="scene-focus-thumb ${activeClass} inline-flex h-14 w-20 flex-none overflow-hidden rounded-lg bg-white" aria-label="Show image ${idx + 1}">
                             <img src="${MapController.escapeHtml(src)}" alt="${MapController.escapeHtml(this.activeLocation?.title || "Itinerary image")} ${idx + 1}" loading="lazy" decoding="async" class="h-full w-full object-cover">
                         </button>
                     `;

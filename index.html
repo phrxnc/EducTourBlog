@@ -94,7 +94,7 @@
             </div>
 
             <div id="scene-focus-panel-body" class="grid gap-2.5 p-3 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] sm:gap-3 sm:p-4 sm:items-start">
-                <div>
+                <div class="flex flex-col gap-2.5">
                     <div class="relative overflow-hidden rounded-xl bg-slate-900">
                         <img id="scene-focus-hero-img" src="" alt="Itinerary image" loading="eager" decoding="async" class="max-h-[36vh] w-full object-contain sm:max-h-[44vh]">
                         <div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-slate-900/80 to-transparent px-3 pb-2 pt-6 text-xs text-white/90">
@@ -105,15 +105,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="scene-focus-copy-rail" class="mt-2.5 flex flex-col gap-2.5 self-start">
-                        <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
-                        <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
+                    <div>
+                        <div id="scene-focus-thumbnails" class="flex gap-2 overflow-x-auto pr-1"></div>
                     </div>
                 </div>
 
-                <div class="flex flex-col">
-                    <p class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Gallery</p>
-                    <div id="scene-focus-thumbnails" class="scene-focus-thumbnails-vertical grid max-h-[52vh] grid-cols-4 gap-2 overflow-y-auto pr-1"></div>
+                <div id="scene-focus-copy-rail" class="flex flex-col gap-2.5 self-start">
+                    <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
+                    <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
                 </div>
             </div>
         </div>
