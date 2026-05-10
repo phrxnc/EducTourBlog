@@ -137,31 +137,25 @@
 
     const setupSidebar = () => {
         const sidebar = document.getElementById("sidebar-shell");
-        const backdrop = document.getElementById("sidebar-backdrop");
         const openBtn = document.getElementById("sidebar-toggle");
         const closeBtn = document.getElementById("sidebar-close");
 
-        if (!sidebar || !backdrop || !openBtn || !closeBtn) {
+        if (!sidebar || !openBtn || !closeBtn) {
             return;
         }
 
         const open = () => {
             sidebar.classList.remove("-translate-x-[110%]");
-            backdrop.classList.remove("hidden");
         };
 
         const close = () => {
             sidebar.classList.add("-translate-x-[110%]");
-            backdrop.classList.add("hidden");
         };
 
         openBtn.addEventListener("click", open);
         closeBtn.addEventListener("click", close);
-        backdrop.addEventListener("click", close);
-
         window.addEventListener("resize", () => {
             if (window.innerWidth >= 1024) {
-                backdrop.classList.add("hidden");
                 sidebar.classList.remove("-translate-x-[110%]");
             } else {
                 sidebar.classList.add("-translate-x-[110%]");
