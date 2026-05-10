@@ -20,6 +20,7 @@
     };
 
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const isMobileViewport = () => window.matchMedia && window.matchMedia("(max-width: 767px)").matches;
 
     class RouteService {
         constructor(config) {
@@ -976,6 +977,7 @@
             this.meta = document.getElementById("scene-focus-meta");
             this.title = document.getElementById("scene-focus-title");
             this.description = document.getElementById("scene-focus-description");
+            this.reflectionBlock = document.getElementById("scene-focus-reflection-block");
             this.reflection = document.getElementById("scene-focus-reflection");
             this.heroImage = document.getElementById("scene-focus-hero-img");
             this.imageCounter = document.getElementById("scene-focus-image-counter");
@@ -1118,9 +1120,13 @@
 
             this.title.textContent = location.title || "Untitled location";
             this.meta.textContent = `Day ${dayNumber} - Activity ${sceneIndex}/${sceneTotal}`;
+            const hasReflection = !!location.reflection;
             this.description.textContent = location.description || "No description provided.";
-            this.reflection.textContent = location.reflection || "No reflection provided.";
-            this.reflection.classList.toggle("hidden", !location.reflection);
+            this.reflection.textContent = hasReflection ? location.reflection : "No reflection provided.";
+            if (this.reflectionBlock) {
+                this.reflectionBlock.classList.toggle("hidden", !hasReflection);
+            }
+            this.reflection.classList.toggle("hidden", !hasReflection);
 
             this.renderThumbnails();
             this.renderImage();
@@ -1728,7 +1734,8 @@
             this.ui.activateDay(day.number);
             this.ui.activateLocation(location.id);
             this.ui.setNowViewing(`Now Viewing: ${location.title}`);
-            this.sceneFocus.updateScene(day.number, location, this.state.currentLocationIndex + 1, day.locations.length);
+            const shouldOpenFocus = !isMobileViewport();
+            this.sceneFocus.updateScene(day.number, location, this.state.currentLocationIndex + 1, day.locations.length, shouldOpenFocus);
             this.updateTourControls(this.canSkipTravel);
             this.syncBrowseTargets();
 
@@ -1792,6 +1799,10 @@
 
         openSceneFocusFromPopup(locationId) {
             if (this.state.isPlaying) {
+                return;
+            }
+
+            if (isMobileViewport()) {
                 return;
             }
 

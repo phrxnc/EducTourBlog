@@ -26,7 +26,7 @@
                     <div class="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-emerald-50/35 via-transparent to-emerald-50/25"></div>
                 </section>
 
-                <aside id="sidebar-shell" class="pointer-events-auto fixed left-3 top-3 z-40 flex w-[90vw] max-w-sm max-h-[calc(100vh-var(--controls-clearance)-0.75rem)] -translate-x-[110%] flex-col overflow-y-auto overscroll-contain rounded-2xl border border-emerald-100/80 bg-white/88 p-4 shadow-2xl shadow-emerald-950/20 backdrop-blur-xl transition-transform duration-300 ease-out sm:left-4 sm:top-4 sm:max-h-[calc(100vh-var(--controls-clearance)-1rem)] lg:left-4 lg:translate-x-0 lg:p-5 lg:max-h-[calc(100vh-var(--controls-clearance)-1rem)]">
+                <aside id="sidebar-shell" class="pointer-events-auto fixed left-3 top-3 z-50 flex w-[90vw] max-w-sm max-h-[calc(100vh-var(--controls-clearance)-0.75rem)] -translate-x-[110%] flex-col overflow-y-auto overscroll-contain rounded-2xl border border-emerald-100/80 bg-white/88 p-4 shadow-2xl shadow-emerald-950/20 backdrop-blur-xl transition-transform duration-300 ease-out sm:left-4 sm:top-4 sm:max-h-[calc(100vh-var(--controls-clearance)-1rem)] lg:left-4 lg:translate-x-0 lg:p-5 lg:max-h-[calc(100vh-var(--controls-clearance)-1rem)]">
                     <div class="mb-3 flex items-center justify-between lg:hidden">
                         <h2 class="text-lg font-semibold text-gray-900">BSIT Educational Tour</h2>
                         <button id="sidebar-close" type="button" class="rounded-full border border-emerald-200 bg-white px-2.5 py-1 text-xs font-semibold text-emerald-700">Close</button>
@@ -54,6 +54,7 @@
                         <a href="https://portfolio-act.vercel.app/" target="_blank" rel="noreferrer" class="underline decoration-emerald-300/70 underline-offset-4 transition hover:text-emerald-600">Check Out My Portfolio</a>
                     </div>
                 </aside>
+                <div id="sidebar-backdrop" class="fixed inset-0 z-40 hidden bg-gray-900/35 lg:hidden"></div>
             </div>
         </div>
     </main>
@@ -111,16 +112,20 @@
                 </div>
 
                 <div id="scene-focus-copy-rail" class="flex flex-col gap-2.5 self-start">
-                    <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
-                    <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
+                    <div id="scene-focus-description-block" class="scene-focus-section">
+                        <p class="scene-focus-heading">Description</p>
+                        <p id="scene-focus-description" class="scene-focus-reveal rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm leading-relaxed text-slate-700"></p>
+                    </div>
+                    <div id="scene-focus-reflection-block" class="scene-focus-section">
+                        <p class="scene-focus-heading">Reflection</p>
+                        <blockquote id="scene-focus-reflection" class="scene-focus-reveal rounded-xl border border-emerald-200 bg-emerald-50/80 px-3 py-2.5 text-sm italic leading-relaxed text-emerald-900"></blockquote>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="scene-focus-live" class="sr-only" aria-live="polite"></div>
-
-    <div id="sidebar-backdrop" class="fixed inset-0 z-30 hidden bg-gray-900/35 lg:hidden"></div>
 
     <section class="pointer-events-none fixed inset-x-0 bottom-3 z-40 px-3 sm:px-4 lg:bottom-4 lg:px-4">
         <div class="mx-auto flex max-w-3xl flex-col items-center gap-2">
@@ -144,6 +149,7 @@
             <div class="pointer-events-none w-full max-w-2xl rounded-2xl border border-emerald-200/80 bg-white/88 p-4 shadow-lg shadow-emerald-950/10 backdrop-blur-lg">
                 <p id="chapter-status" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-700">Standby</p>
                 <p id="now-viewing" class="mt-1 text-base font-semibold text-gray-900 sm:text-lg">Now Viewing: Waiting to start</p>
+                <p class="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Franck Jumar Aming</p>
             </div>
         </div>
     </section>

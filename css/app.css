@@ -1,5 +1,8 @@
 :root {
     --controls-clearance: 158px;
+    --scrollbar-track: #ecfdf5;
+    --scrollbar-thumb: #10b981;
+    --scrollbar-thumb-hover: #059669;
 }
 
 .tour-bus-marker {
@@ -215,7 +218,7 @@
 #locations-panel {
     scrollbar-gutter: stable;
     scrollbar-width: thin;
-    scrollbar-color: #6ee7b7 #ecfdf5;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 #locations-panel::-webkit-scrollbar {
@@ -223,18 +226,68 @@
 }
 
 #locations-panel::-webkit-scrollbar-track {
-    background: #ecfdf5;
+    background: var(--scrollbar-track);
     border-radius: 9999px;
 }
 
 #locations-panel::-webkit-scrollbar-thumb {
-    background: #6ee7b7;
+    background: var(--scrollbar-thumb);
     border-radius: 9999px;
-    border: 2px solid #ecfdf5;
+    border: 2px solid var(--scrollbar-track);
 }
 
 #locations-panel::-webkit-scrollbar-thumb:hover {
-    background: #34d399;
+    background: var(--scrollbar-thumb-hover);
+}
+
+body,
+#scene-focus-copy-rail,
+#scene-focus-panel-body,
+#scene-focus-thumbnails,
+#map-image-modal-thumbnails,
+.modal-gallery-vertical {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+body::-webkit-scrollbar,
+#scene-focus-copy-rail::-webkit-scrollbar,
+#scene-focus-panel-body::-webkit-scrollbar,
+#scene-focus-thumbnails::-webkit-scrollbar,
+#map-image-modal-thumbnails::-webkit-scrollbar,
+.modal-gallery-vertical::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+body::-webkit-scrollbar-track,
+#scene-focus-copy-rail::-webkit-scrollbar-track,
+#scene-focus-panel-body::-webkit-scrollbar-track,
+#scene-focus-thumbnails::-webkit-scrollbar-track,
+#map-image-modal-thumbnails::-webkit-scrollbar-track,
+.modal-gallery-vertical::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 9999px;
+}
+
+body::-webkit-scrollbar-thumb,
+#scene-focus-copy-rail::-webkit-scrollbar-thumb,
+#scene-focus-panel-body::-webkit-scrollbar-thumb,
+#scene-focus-thumbnails::-webkit-scrollbar-thumb,
+#map-image-modal-thumbnails::-webkit-scrollbar-thumb,
+.modal-gallery-vertical::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 9999px;
+    border: 2px solid var(--scrollbar-track);
+}
+
+body::-webkit-scrollbar-thumb:hover,
+#scene-focus-copy-rail::-webkit-scrollbar-thumb:hover,
+#scene-focus-panel-body::-webkit-scrollbar-thumb:hover,
+#scene-focus-thumbnails::-webkit-scrollbar-thumb:hover,
+#map-image-modal-thumbnails::-webkit-scrollbar-thumb:hover,
+.modal-gallery-vertical::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
 }
 
 @media (max-width: 1023px) {
@@ -254,6 +307,25 @@
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.scene-focus-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.scene-focus-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(15, 23, 42, 0.62);
+}
+
+#scene-focus-description,
+#scene-focus-reflection {
+    text-align: justify;
 }
 
 .scene-focus-reveal.scene-focus-visible {
@@ -305,16 +377,50 @@
 }
 
 @media (max-width: 767px) {
+    #scene-focus-modal {
+        align-items: stretch;
+        padding: 0;
+    }
+
     #scene-focus-modal #scene-focus-panel {
         margin-top: auto;
         width: 100%;
         max-width: 100%;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        max-height: 100vh;
+        height: 100%;
+    }
+
+    #scene-focus-modal #scene-focus-panel-body {
+        grid-template-columns: 1fr;
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+        padding: 12px;
+    }
+
+    #scene-focus-modal #scene-focus-copy-rail {
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
     }
 
     #scene-focus-modal #scene-focus-hero-img {
-        max-height: 34vh !important;
+        max-height: 30vh !important;
+    }
+
+    #scene-focus-thumbnails {
+        gap: 8px;
+    }
+
+    .scene-focus-thumb {
+        height: 48px;
+        width: 64px;
+    }
+    .tour-popup-learn-more {
+        display: none !important;
     }
 }
 

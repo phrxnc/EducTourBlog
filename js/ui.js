@@ -18,6 +18,7 @@ export const createUI = () => {
     const sceneTitle = document.getElementById("scene-focus-title");
     const sceneMeta = document.getElementById("scene-focus-meta");
     const sceneDescription = document.getElementById("scene-focus-description");
+    const sceneReflectionBlock = document.getElementById("scene-focus-reflection-block");
     const sceneReflection = document.getElementById("scene-focus-reflection");
     const sceneHeroImg = document.getElementById("scene-focus-hero-img");
     const sceneImageCounter = document.getElementById("scene-focus-image-counter");
@@ -314,10 +315,12 @@ export const createUI = () => {
                 sceneReflection.textContent = location.reflection;
                 sceneReflection.classList.add("scene-focus-visible");
                 sceneReflection.classList.remove("hidden");
+                sceneReflectionBlock?.classList.remove("hidden");
             } else {
                 sceneReflection.textContent = "";
                 sceneReflection.classList.remove("scene-focus-visible");
                 sceneReflection.classList.add("hidden");
+                sceneReflectionBlock?.classList.add("hidden");
             }
         }
         setSceneFocusImages(images);
